@@ -1,0 +1,44 @@
+import SwiftUI
+
+struct ContentView: View {
+    
+    let elementList = ["Carbon", "Gold", "Chlorine", "Sodium"] // stores all the list
+    
+    @State private var currentElementIndex = 0
+    @State private var showAnswer = false 
+
+// define the variables
+    
+    var body: some View {
+        VStack(spacing: 30) {
+            
+            Image(elementList[currentElementIndex])
+                .resizable()
+                .scaledToFit()
+                .frame(width: 250, height: 250) // fit the image within the frame
+            
+            Text(showAnswer ? elementList[currentElementIndex] : "?")
+                .font(.largeTitle) 
+                .fontWeight(.bold) // textbox
+            
+            Button("Show Answer") {
+                showAnswer = true
+            }
+            .font(.title2)
+            .buttonStyle(.borderedProminent) // button that created to have show answer
+            
+            Button("Next") {
+                currentElementIndex += 1
+                
+                if currentElementIndex >= elementList.count {
+                    currentElementIndex = 0
+                }
+                
+                showAnswer = false
+            } // the next button!
+            .font(.title2)
+            .buttonStyle(.bordered) // set the font and 
+        }
+        .padding()
+    }
+}
